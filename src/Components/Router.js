@@ -10,6 +10,7 @@ import Home from '../Routes/Home';
 import Search from '../Routes/Search';
 import TV from '../Routes/TV';
 import Header from './Header';
+import Detail from '../Routes/Detail';
 //2-1의 Q.- 그래서 home이 제일 먼저 실행되어야한다는건 어떻게 알려주는거?
 // route에 여러가지 path가 있는데 왜 home으로 가는거?
 export default () => (
@@ -24,8 +25,13 @@ export default () => (
 			<Route path="/tv" component={TV} />
 			{/*<Route path="/tv/popular" render={() => <h1>popular</h1>} />*/}
 			<Route path="/search" component={Search} />
+			<Route path="/movie/:id" component={Detail} />
+			{/* ":id"는 뭐든 와도됨을 의미함 뭐로 변경되도 괜찮
+			어떻게 :id 부분을 url로부터 가져오는지 Detail폴더에서 설명*/}
+			<Route path="/show/:id" component={Detail} />
 			<Redirect from="*" to="/" />
 			{/*일치하는 route가 하나도 없다면 어느페이지든 받아서 /로 보내줌-근데 에러남->switch필요*/}
 		</Switch>
+		{/* router는 route에게 default로 props를 전달해줌 */}
 	</Router>
 );
