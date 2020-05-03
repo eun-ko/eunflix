@@ -13,11 +13,21 @@ export default class extends React.Component {
 		error: null,
 	};
 
-	handleSubmit = () => {
+	handleSubmit = (event) => {
+		event.preventDefault();
 		const { searchTerm } = this.state;
 		if (searchTerm !== '') {
 			this.searchByTerm(searchTerm);
 		}
+	};
+
+	updateTerm = (event) => {
+		const {
+			target: { value },
+		} = event;
+		this.setState({
+			searchTerm: value,
+		});
 	};
 
 	searchByTerm = async () => {
@@ -49,13 +59,7 @@ export default class extends React.Component {
 	};
 
 	render() {
-		const {
-			movieResults,
-			tvResults,
-			searchTerm,
-			loading,
-			error,
-		} = this.setState;
+		const { movieResults, tvResults, searchTerm, loading, error } = this.state;
 		return (
 			<SearchPresenter
 				movieResults={movieResults}
@@ -66,6 +70,7 @@ export default class extends React.Component {
 				handleSubmit={this.handleSubmit}
 				//searchPresenter에서 폼을 만들고, 셋업하고
 				//handleSubmit을 호출하기 위해 onSubmit을 호출한다
+				updateTerm={this.updateTerm}
 			/>
 		);
 	}
