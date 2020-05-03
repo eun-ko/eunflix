@@ -16,7 +16,7 @@ const globalStyles = createGlobalStyle`
         font-size:12px;
         background-color:rgba(20, 20, 20, 1);
         color:white;
-        padding-top:80px;
+        padding-top:50px;
     }
 `; //글로벌로 적용할 스타일 적기
 
