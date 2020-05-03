@@ -34,11 +34,15 @@ export default class extends React.Component {
 			//return 하면 함수 죽음
 		}
 		let result = null;
+		//덮어쓰기하기위해서 result를 const가 아니라 let으로 선언함
 		try {
 			if (this.isMovie) {
 				({ data: result } = await moviesApi.movieDetail(parsedId));
 			} else {
 				({ data: result } = await tvApi.showDetail(parsedId));
+				//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Assignment_without_declaration
+				//참고하면, 밖에 괄호씌워준거는
+				//const { data: result } = await tvApi.showDetail(parsedId) 와 같음
 			}
 		} catch {
 			this.setState({ error: "Can't find anything." });
